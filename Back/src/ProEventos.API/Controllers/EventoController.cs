@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using ProEventos.API.Data;
 using ProEventos.API.Models;
 
 namespace ProEventos.API.Controllers
@@ -33,20 +32,23 @@ namespace ProEventos.API.Controllers
             },
         };
 
-        public EventoController()
+        private readonly DataContext context;
+
+        public EventoController(DataContext context)
         {
+            this.context = context;
         }
 
         [HttpGet]
         public IEnumerable<Evento> Get()
         {
-            return _eventos;
+            return this.context.Eventos;
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<Evento> GetById(int id)
+        public Evento GetById(int id)
         {
-            return _eventos.Where(evento => evento.EventoId == id);
+            return this.context.Eventos.FirstOrDefault(evento => evento.EventoId == id);
         }
 
         [HttpPost]
