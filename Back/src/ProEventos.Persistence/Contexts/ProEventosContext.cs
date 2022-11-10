@@ -9,7 +9,7 @@ namespace ProEventos.Persistence.Contexts
             : base(options) { }
 
         public DbSet<Evento> Eventos { get; set; }
-        public DbSet<Lote> Lotess { get; set; }
+        public DbSet<Lote> Lotes { get; set; }
         public DbSet<Palestrante> Palestrantes { get; set; }
         public DbSet<PalestranteEvento> PalestrantesEventos { get; set; }
         public DbSet<RedeSocial> RedesSociaias { get; set; }
